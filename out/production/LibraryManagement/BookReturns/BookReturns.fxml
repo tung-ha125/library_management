@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?import com.jfoenix.controls.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="913.0" prefWidth="1159.0" style="-fx-text-fill: red;" stylesheets="@../resources/theme.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="BookReturns.BookReturnsController">
+   <children>
+      <TextField fx:id="memberIdField" layoutX="53.0" layoutY="119.0" onKeyPressed="#pressMemberIdKey" promptText="Member ID" />
+      <TableView fx:id="memberTable" layoutX="376.0" layoutY="119.0" prefHeight="267.0" prefWidth="567.0">
+        <columns>
+          <TableColumn fx:id="bookIDcolumn" prefWidth="139.0" text="Book ID" />
+          <TableColumn fx:id="memberRentedDateColumn" prefWidth="427.0" text="Rented Date" />
+        </columns>
+      </TableView>
+      <TextField fx:id="bookIDField" layoutX="53.0" layoutY="481.0" onKeyPressed="#pressBookID" promptText="Book ID" />
+      <TableView fx:id="bookTable" layoutX="376.0" layoutY="481.0" prefHeight="267.0" prefWidth="567.0">
+         <columns>
+            <TableColumn fx:id="memberIDColumn" prefWidth="139.0" text="Member ID" />
+            <TableColumn fx:id="bookRentedDateColumn" prefWidth="427.0" text="Rented Date" />
+         </columns>
+      </TableView>
+      <JFXButton fx:id="clearMemberButton" layoutX="53.0" layoutY="226.0" onAction="#clickClearMemberButton" prefHeight="40.0" prefWidth="80.0" text="Clear" />
+      <JFXButton fx:id="clearBookButton" layoutX="53.0" layoutY="529.0" onAction="#clickClearBookButton" prefHeight="40.0" prefWidth="80.0" text="Clear" />
+      <JFXButton fx:id="saveButon1" layoutX="144.0" layoutY="226.0" onAction="#clickDeleteMemberButton" prefHeight="40.0" prefWidth="80.0" text="Delete" />
+      <Text fx:id="warningText" fill="RED" layoutX="376.0" layoutY="417.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Please choose a row" visible="false" wrappingWidth="567.0" />
+      <TextField fx:id="insertBookField" layoutX="53.0" layoutY="176.0" onKeyPressed="#pressInsertBook" promptText="Insert Book" />
+      <Text fx:id="totalBookField" fill="#4fc349" layoutX="974.0" layoutY="137.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-fill: green;" text="Total books: 0" wrappingWidth="150.6708984375">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Text>
+      <Text fx:id="totalMemberField" fill="#4fc349" layoutX="974.0" layoutY="499.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total members: 0" wrappingWidth="169.0">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Text>
+      <Text fx:id="warningText1" fill="RED" layoutX="376.0" layoutY="775.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Please choose a row" visible="false" wrappingWidth="567.0" />
+   </children>
+</AnchorPane>

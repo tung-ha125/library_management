@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="940.0" prefWidth="1300.0" stylesheets="@/resources/theme.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainMenu.MainMenuController">
+    <children>
+        <BorderPane prefHeight="1000.0" prefWidth="1300.0">
+            <center>
+
+            </center>
+            <center>
+                <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                    <children>
+                        <JFXTabPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="913.0" prefWidth="1159.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" BorderPane.alignment="CENTER">
+                            <tabs>
+                                <Tab text="Book returns">
+                                    <content>
+                                        <fx:include source="/BookReturns/BookReturns.fxml"/>
+                                    </content>
+                                </Tab>
+                                <Tab text="Book View">
+                                    <content>
+                                        <fx:include source="/DisplayBook/DisplayBook.fxml"/>
+                                    </content>
+                                </Tab>
+                                <Tab text="Member View">
+                                    <content>
+                                        <fx:include source="/DisplayMember/DisplayMember.fxml"/>
+                                    </content>
+                                </Tab>
+                            </tabs>
+                        </JFXTabPane>
+                        <JFXHamburger fx:id="hamburger" styleClass="jfx-hamburger-icon" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="75.0" />
+
+                    </children></AnchorPane>
+            </center>
+            <right>
+                <JFXDrawer fx:id="drawer" defaultDrawerSize="150.0" direction="RIGHT" nodeOrientation="LEFT_TO_RIGHT" prefHeight="578.0" prefWidth="0.0" resizableOnDrag="true" resizeContent="true" BorderPane.alignment="CENTER">
+                    <BorderPane.margin>
+                        <Insets />
+                    </BorderPane.margin></JFXDrawer>
+            </right>
+            <StackPane.margin>
+                <Insets />
+            </StackPane.margin>
+        </BorderPane>
+    </children>
+</StackPane>

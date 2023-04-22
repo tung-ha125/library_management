@@ -1,0 +1,64 @@
+/*TabPane styling*/
+
+*{
+    -fx-primary: #3cb371;
+    -fx-primarytext: #008CBA;
+}
+.tab{
+    -fx-background-color: -fx-primary;
+    -fx-pref-width: 350;
+    -fx-pref-height: 60;
+}
+
+.tab-header-background{
+    -fx-background-color: -fx-primary;
+}
+
+.button {
+    -fx-background-color: #5AC88B;
+    -fx-border: none;
+    -fx-text-fill: white;
+    /*-fx-padding: 15px 32px;*/
+    -fx-text-align: center;
+    -fx-text-decoration: none;
+    /*-fx-display: inline-block;*/
+    -fx-font-size: 15px;
+}
+
+.jfx-hamburger-icon{
+    -fx-spacing: 7;
+}
+
+.jfx-hamburger-icon StackPane
+{
+    -fx-background-color: -fx-primary;
+    -fx-background-radius: 5px;
+}
+
+.text-field {
+    -fx-background-radius: 80; /* Set the border radius to a high value */
+    -fx-border-radius: 80;
+    -fx-padding: 5px; /* Add some padding to the TextField to make the oval shape more apparent */
+    -fx-background-color: white; /* Set the background color to white */
+    -fx-border-color: -fx-primary; /* Set the border color to black */
+    -fx-border-width: 3px; /* Set the border width to 3px */
+}
+
+.dialog-button{
+    /*-fx-background-color: blue;*/
+    -fx-border-color: green;
+    -fx-text-fill: white;
+    -fx-border-radius: 1px;
+    -fx-background-radius: 50; /* Set the border radius to a high value */
+    -fx-border-radius: 50;
+}
+
+.dialog-button:hover{
+    /*-fx-background-color: blue;*/
+    -fx-border-color: derive(green, -20%);
+    -fx-text-fill: white;
+    -fx-background-radius: 50; /* Set the border radius to a high value */
+    -fx-border-radius: 50;
+}
+
+

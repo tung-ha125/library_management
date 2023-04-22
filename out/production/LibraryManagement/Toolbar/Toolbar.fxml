@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox prefHeight="578.0" prefWidth="156.0" stylesheets="@../resources/theme.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Toolbar.ToolbarController">
+   <children>
+      <JFXButton fx:id="addMemberButton" mnemonicParsing="false" onAction="#clickaddMemberButton" prefHeight="50.0" prefWidth="156.0" text="Add Member" />
+      <JFXButton fx:id="deleteMemberButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#clickDeleteMemberButton" prefHeight="50.0" prefWidth="156.0" text="Delete Member" />
+      <JFXButton fx:id="addBookButton" layoutX="10.0" layoutY="113.0" mnemonicParsing="false" onAction="#clickaddBookButton" prefHeight="50.0" prefWidth="156.0" text="Add Book" />
+      <JFXButton fx:id="deleteBookButton" layoutX="10.0" layoutY="266.0" mnemonicParsing="false" onAction="#clickDeleteBookButton" prefHeight="50.0" prefWidth="156.0" text="Delete Book" />
+   </children>
+</VBox>
