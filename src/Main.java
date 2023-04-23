@@ -14,7 +14,6 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        DatabaseHandler.connectToDatabase();
         DatabaseHandler.searchAllBooks();
         root = FXMLLoader.load(getClass().getResource("/MainMenu/MainMenu.fxml"));
         primaryStage.setTitle("Library Management");

@@ -88,7 +88,7 @@ public class BookReturnsController implements Initializable {
         // Query the rentedbooks table in the database for information about this member
         bookCount = 0;
         try {
-            Connection conn = DriverManager.getConnection(DatabaseHandler.MySQL_URL, DatabaseHandler.USER_NAME, DatabaseHandler.PASSWORD);
+            Connection conn = DatabaseHandler.connectToDatabase();
             PreparedStatement stmt = conn.prepareStatement("SELECT * FROM member where MemberId = ?");
             stmt.setInt(1, Integer.parseInt(memberId));
             ResultSet rs = stmt.executeQuery();
@@ -139,7 +139,7 @@ public class BookReturnsController implements Initializable {
         memberCount = 0;
         // Query the rentedbooks table in the database for information about this book
         try {
-            Connection conn = DriverManager.getConnection(DatabaseHandler.MySQL_URL, DatabaseHandler.USER_NAME, DatabaseHandler.PASSWORD);
+            Connection conn = DatabaseHandler.connectToDatabase();
             PreparedStatement stmt = conn.prepareStatement("SELECT MemberId, RentedTime FROM rentedbooks WHERE BookId = ?");
             stmt.setString(1, bookId);
             ResultSet rs = stmt.executeQuery();
@@ -195,7 +195,7 @@ public class BookReturnsController implements Initializable {
         warningText.setVisible(false);
 
         //delete info
-        Connection conn = DriverManager.getConnection(DatabaseHandler.MySQL_URL, DatabaseHandler.USER_NAME, DatabaseHandler.PASSWORD);
+        Connection conn = DatabaseHandler.connectToDatabase();
         PreparedStatement stmt = conn.prepareStatement("DELETE FROM rentedbooks WHERE BookId = ? AND RentedTime = ? LIMIT 1 ");
         stmt.setString(1, selectedBook.getBookID());
         stmt.setTimestamp(2, selectedBook.getRentedDate());
@@ -240,7 +240,7 @@ public class BookReturnsController implements Initializable {
             try {
 
                 // Create a connection to the database
-                Connection conn = DriverManager.getConnection(DatabaseHandler.MySQL_URL, DatabaseHandler.USER_NAME, DatabaseHandler.PASSWORD);
+                Connection conn = DatabaseHandler.connectToDatabase();
 
                 // Prepare a SQL statement to check if the member ID exists
                 String sql = "SELECT * FROM member WHERE MemberId=?";

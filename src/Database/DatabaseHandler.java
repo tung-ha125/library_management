@@ -14,29 +14,21 @@ public class DatabaseHandler {
     public static final String USER_NAME = "root";
     public static final String PASSWORD = "";
     public static final String MySQL_URL = "jdbc:mysql://localhost:3306/library_management";
-    private static Connection connection = null;
 
     /**
      * Connect to Database.Database;
      */
-    public static void connectToDatabase() {
-        System.out.println("Connecting database...");
+    public static Connection connectToDatabase() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            connection = DriverManager.getConnection(MySQL_URL, USER_NAME, PASSWORD);
-
+            Connection conn = DriverManager.getConnection(MySQL_URL, USER_NAME, PASSWORD);
+            return conn;
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
-        System.out.println("Database.Database connected!");
-    }
-
-
-    public static void closeDatabase() {
-        close(connection);
-        System.out.println("Database.Database disconnected!");
+        return null;
     }
 
     /**
@@ -72,7 +64,8 @@ public class DatabaseHandler {
     public static boolean addBook(String bookId, String bookName, String bookAuthor, String bookPublisher, String bookIntcode, String bookAvailable) {
         String query = "INSERT INTO book (id, title, author, publisher, intcode, available) VALUES (?, ?, ?, ?, ?, ?)";
 
-        try (PreparedStatement statement = connection.prepareStatement(query)) {
+        Connection conn = connectToDatabase();;
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
             statement.setString(1, bookId);
             statement.setString(2, bookName);
             statement.setString(3, bookAuthor);
@@ -81,11 +74,13 @@ public class DatabaseHandler {
             statement.setInt(6, Integer.parseInt(bookAvailable));
 
             int rowsAffected = statement.executeUpdate();
-
+            close(statement);
             return rowsAffected > 0;
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
+        } finally {
+            close(conn);
         }
     }
 
@@ -94,33 +89,36 @@ public class DatabaseHandler {
 
         String query = "SELECT * FROM book";
 
-        try (Connection conn = DriverManager.getConnection(MySQL_URL, USER_NAME, PASSWORD);
-             PreparedStatement preparedStatement = conn.prepareStatement(query);
-             ResultSet resultSet = preparedStatement.executeQuery()) {
-
+        Connection conn = connectToDatabase();
+        PreparedStatement preparedStatement = null;
+        try {
+            preparedStatement = conn.prepareStatement(query);
+            ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                String id = resultSet.getString("id");
-                String title = resultSet.getString("title");
-                String author = resultSet.getString("author");
-                String publisher = resultSet.getString("publisher");
-                String intcode = resultSet.getString("intcode");
-                Integer isAvail = resultSet.getInt("available");
+                    String id = resultSet.getString("id");
+                    String title = resultSet.getString("title");
+                    String author = resultSet.getString("author");
+                    String publisher = resultSet.getString("publisher");
+                    String intcode = resultSet.getString("intcode");
+                    Integer isAvail = resultSet.getInt("available");
 
-                RenderedBook book = new RenderedBook(id, title, author, publisher, intcode, isAvail);
-                bookList.add(book);
+                    RenderedBook book = new RenderedBook(id, title, author, publisher, intcode, isAvail);
+                    bookList.add(book);
             }
-
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
+        } finally {
+            close(preparedStatement);
         }
 
+        close(conn);
         return bookList;
     }
 
-    public static ArrayList<RenderedMember> searchAllMembers() {
+        public static ArrayList<RenderedMember> searchAllMembers() {
         ArrayList<RenderedMember> members = new ArrayList<>();
         try {
-            Connection conn = DriverManager.getConnection(MySQL_URL, USER_NAME, PASSWORD);
+            Connection conn = connectToDatabase();
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM Member");
 
@@ -133,8 +131,7 @@ public class DatabaseHandler {
                 RenderedMember member = new RenderedMember(name, memberId, mobile, email);
                 members.add(member);
             }
-
-            conn.close();
+            close(conn);
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
         }
@@ -143,10 +140,13 @@ public class DatabaseHandler {
 
     public static boolean deleteMember(String memberId) {
         String deleteQuery = "DELETE FROM member WHERE memberId = ?";
-        try (Connection conn = DriverManager.getConnection(MySQL_URL, USER_NAME, PASSWORD);
-             PreparedStatement stmt = conn.prepareStatement(deleteQuery)) {
+        try {
+            Connection conn = connectToDatabase();
+            PreparedStatement stmt = conn.prepareStatement(deleteQuery);
             stmt.setString(1, memberId);
             int rowsAffected = stmt.executeUpdate();
+            close(stmt);
+            close(conn);
             return rowsAffected > 0;
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -156,10 +156,13 @@ public class DatabaseHandler {
 
     public static boolean deleteBook(String bookId) {
         String deleteQuery = "DELETE FROM book WHERE id = ?";
-        try (Connection conn = DriverManager.getConnection(MySQL_URL, USER_NAME, PASSWORD);
-             PreparedStatement stmt = conn.prepareStatement(deleteQuery)) {
+        try {
+            Connection conn = connectToDatabase();
+            PreparedStatement stmt = conn.prepareStatement(deleteQuery);
             stmt.setString(1, bookId);
             int rowsAffected = stmt.executeUpdate();
+            close(conn);
+            close(stmt);
             return rowsAffected > 0;
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -170,13 +173,15 @@ public class DatabaseHandler {
     public static Boolean editMember(RenderedMember member) {
         // Update the member in the database
         try {
-            Connection conn = DriverManager.getConnection(MySQL_URL, USER_NAME, PASSWORD);
+            Connection conn = connectToDatabase();
             PreparedStatement stmt = conn.prepareStatement("UPDATE member SET name=?, mobile=?, email=? WHERE memberid=?");
             stmt.setString(1, member.getName());
             stmt.setString(2, member.getMobile());
             stmt.setString(3, member.getEmail());
             stmt.setInt(4, Integer.valueOf(member.getMemberId()));
             int rowsAffected = stmt.executeUpdate();
+            close(conn);
+            close(stmt);
             if (rowsAffected > 0) {
                 // If the update was successful, update the member in the table as well
                 return Boolean.TRUE;
@@ -194,7 +199,7 @@ public class DatabaseHandler {
     public static Boolean editBook(RenderedBook book) {
         // Update the member in the database
         try {
-            Connection conn = DriverManager.getConnection(MySQL_URL, USER_NAME, PASSWORD);
+            Connection conn = connectToDatabase();
             PreparedStatement stmt = conn.prepareStatement("UPDATE book SET title=?, author=?, publisher=?, intcode=?, available = ? WHERE id=?");
             stmt.setString(1, book.getTitle());
             stmt.setString(2, book.getAuthor());
@@ -203,6 +208,8 @@ public class DatabaseHandler {
             stmt.setInt(5, book.getAvailable());
             stmt.setString(6, book.getBookId());
             int rowsAffected = stmt.executeUpdate();
+            close(stmt);
+            close(conn);
             if (rowsAffected > 0) {
                 // If the update was successful, update the member in the table as well
                 return Boolean.TRUE;
@@ -220,7 +227,7 @@ public class DatabaseHandler {
     public static Boolean pushNewMember(String name, String mobile, String email) {
         // create a new member and add it to the database
         try {
-            Connection conn = DriverManager.getConnection(MySQL_URL, USER_NAME, PASSWORD);
+            Connection conn = connectToDatabase();
             PreparedStatement stmt = conn.prepareStatement("INSERT INTO Member (Name, Mobile, Email) VALUES (?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
             stmt.setString(1, name);
             stmt.setString(2, mobile);
@@ -233,17 +240,11 @@ public class DatabaseHandler {
             if (rs.next()) {
                 id = rs.getInt(1);
             }
-            conn.close();
+            close(stmt);
+            close(conn);
 
             // create a new RenderedMember object and add it to the list
             RenderedMember newMember = new RenderedMember(name, id, mobile, email);
-
-            // show success message
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Member added");
-            alert.setHeaderText(null);
-            alert.setContentText("The member has been added successfully.");
-            alert.showAndWait();
             return Boolean.TRUE;
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());

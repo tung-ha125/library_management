@@ -6,7 +6,6 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
 <StackPane fx:id="rootPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="DisplayMember.DisplayMemberController">
    <children>
       <AnchorPane fx:id="rootAnchorPane" prefHeight="800.0" prefWidth="1000.0" stylesheets="@../resources/theme.css">
