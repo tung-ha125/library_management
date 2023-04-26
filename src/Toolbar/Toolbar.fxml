@@ -3,11 +3,24 @@
 <?import com.jfoenix.controls.*?>
 <?import javafx.scene.layout.*?>
 
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <VBox prefHeight="578.0" prefWidth="156.0" stylesheets="@../resources/theme.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Toolbar.ToolbarController">
    <children>
-      <JFXButton fx:id="addMemberButton" mnemonicParsing="false" onAction="#clickaddMemberButton" prefHeight="50.0" prefWidth="156.0" text="Add Member" />
-      <JFXButton fx:id="deleteMemberButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#clickDeleteMemberButton" prefHeight="50.0" prefWidth="156.0" text="Delete Member" />
-      <JFXButton fx:id="addBookButton" layoutX="10.0" layoutY="113.0" mnemonicParsing="false" onAction="#clickaddBookButton" prefHeight="50.0" prefWidth="156.0" text="Add Book" />
-      <JFXButton fx:id="deleteBookButton" layoutX="10.0" layoutY="266.0" mnemonicParsing="false" onAction="#clickDeleteBookButton" prefHeight="50.0" prefWidth="156.0" text="Delete Book" />
+      <JFXButton fx:id="addMemberButton" contentDisplay="TOP" mnemonicParsing="false" onAction="#clickaddMemberButton" prefHeight="100.0" prefWidth="156.0" text="Add Member">
+         <graphic>
+            <FontAwesomeIconView glyphName="USER_PLUS" size="25" fill="gainsboro"/>
+         </graphic></JFXButton>
+      <JFXButton fx:id="deleteMemberButton" contentDisplay="TOP" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#clickDeleteMemberButton" prefHeight="100.0" prefWidth="156.0" text="Delete Member">
+          <graphic>
+              <FontAwesomeIconView glyphName="USER_TIMES" size="25" fill="gainsboro"/>
+          </graphic></JFXButton>
+      <JFXButton fx:id="addBookButton" contentDisplay="TOP" layoutX="10.0" layoutY="113.0" mnemonicParsing="false" onAction="#clickaddBookButton" prefHeight="100.0" prefWidth="156.0" text="Add Book">
+          <graphic>
+              <FontAwesomeIconView glyphName="BOOK" size="25" fill="gainsboro"/>
+          </graphic></JFXButton>
+      <JFXButton fx:id="deleteBookButton" contentDisplay="TOP" layoutX="10.0" layoutY="266.0" mnemonicParsing="false" onAction="#clickDeleteBookButton" prefHeight="100.0" prefWidth="156.0" text="Delete Book" >
+          <graphic>
+              <FontAwesomeIconView glyphName="BOOK" size="25" fill="gainsboro"/>
+          </graphic></JFXButton>
    </children>
 </VBox>

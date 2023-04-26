@@ -2,11 +2,9 @@ package Database;
 
 import DisplayBook.RenderedBook;
 import DisplayMember.RenderedMember;
-import javafx.scene.control.Alert;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.regex.Pattern;
 
 
