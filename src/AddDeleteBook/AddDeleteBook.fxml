@@ -2,9 +2,6 @@
 
 <?import javafx.scene.paint.*?>
 <?import de.jensd.fx.glyphs.fontawesome.*?>
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
