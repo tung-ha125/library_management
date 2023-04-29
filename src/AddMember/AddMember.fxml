@@ -7,23 +7,23 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.control.TextField?>
 
-<StackPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="527.0" stylesheets="@../resources/smallwindow.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AddMember.AddMemberController">
+<StackPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="515.0" stylesheets="@../resources/smallwindow.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AddMember.AddMemberController">
    <children>
-      <AnchorPane fx:id="rootAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="527.0">
+      <AnchorPane fx:id="rootAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="515.0">
           <children>
-              <VBox prefHeight="349.0" prefWidth="527.0" spacing="20.0">
+              <VBox prefHeight="400.0" prefWidth="527.0" spacing="20.0">
                   <children>
-                      <TextField fx:id="name" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="450.0" promptText="Member Name">
+                      <TextField fx:id="name" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="450.0" promptText="Member Name">
                           <VBox.margin>
                               <Insets bottom="5.0" left="30.0" right="10.0" top="10.0" />
                           </VBox.margin>
                       </TextField>
-                      <TextField fx:id="phone" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="450.0" promptText="Phone Number">
+                      <TextField fx:id="phone" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="450.0" promptText="Phone Number">
                           <VBox.margin>
                               <Insets bottom="5.0" left="30.0" right="10.0" top="10.0" />
                           </VBox.margin>
                       </TextField>
-                      <TextField fx:id="email" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="450.0" promptText="Email Address">
+                      <TextField fx:id="email" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="450.0" promptText="Email Address">
                           <VBox.margin>
                               <Insets bottom="5.0" left="30.0" right="10.0" top="10.0" />
                           </VBox.margin>

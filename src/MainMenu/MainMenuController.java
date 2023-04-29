@@ -1,68 +1,82 @@
 package MainMenu;
 
-import com.jfoenix.controls.JFXDrawer;
-import com.jfoenix.controls.JFXHamburger;
-import com.jfoenix.transitions.hamburger.HamburgerSlideCloseTransition;
-import javafx.event.Event;
+import com.jfoenix.controls.JFXButton;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.StackPane;
+
 import java.io.IOException;
 import java.net.URL;
+import java.util.Collections;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 public class MainMenuController implements Initializable {
 
     @FXML
-    private Button deleteBookButton;
+    private StackPane mainPartRoot;
     @FXML
-    private Button addBookButton;
-    @FXML
-    private Button addMemberButton;
-    @FXML
-    private Button deleteMemberButton;
-    @FXML
-    private Button viewMemberButton;
-    @FXML
-    private Button viewBookButton;
-    @FXML
-    private JFXHamburger hamburger;
-    @FXML
-    private JFXDrawer drawer;
+    private Button memberViewButton;
 
-    private void initDrawer() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Toolbar/Toolbar.fxml"));
-            VBox toolbar = loader.load();
-            drawer.setSidePane(toolbar);
-            drawer.setMinWidth(0);
-        } catch (IOException ex) {
-            Logger.getLogger(MainMenuController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        HamburgerSlideCloseTransition task = new HamburgerSlideCloseTransition(hamburger);
-        task.setRate(-1);
-        hamburger.addEventHandler(MouseEvent.MOUSE_CLICKED, (Event event) -> {
-            drawer.toggle();
-        });
-        drawer.setOnDrawerOpening((event) -> {
-            task.setRate(task.getRate() * -1);
-            task.play();
-            drawer.setMinWidth(156);
-        });
-        drawer.setOnDrawerClosed((event) -> {
-            task.setRate(task.getRate() * -1);
-            task.play();
-            drawer.setMinWidth(0);
-        });
-    }
+    @FXML
+    private Button bookViewButton;
 
+    @FXML
+    private Button addDeleteBookButton;
+
+    @FXML
+    private Button addDeleteMemberButton;
+
+    @FXML
+    private Button returnsBookButton;
+
+    private StackPane bookReturnsLoader;
+
+    private StackPane bookViewLoader;
+    private StackPane addDeleteBookLoader;
+    private StackPane memberViewLoader;
+    private StackPane addDeleteMemberLoader;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        initDrawer();
+        try {
+            bookReturnsLoader = new FXMLLoader(getClass().getResource("/BookReturns/BookReturns.fxml")).load();
+            bookViewLoader= new FXMLLoader(getClass().getResource("/DisplayBook/DisplayBook.fxml")).load();
+            addDeleteBookLoader = new FXMLLoader(getClass().getResource("/AddDeleteBook/AddDeleteBook.fxml")).load();
+            memberViewLoader = new FXMLLoader(getClass().getResource("/DisplayMember/DisplayMember.fxml")).load();
+            addDeleteMemberLoader = new FXMLLoader(getClass().getResource("/AddDeleteMember/AddDeleteMember.fxml")).load();
+            mainPartRoot.getChildren().setAll(Collections.singleton(bookReturnsLoader));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    @FXML
+    void clickReturnsBook(ActionEvent event) throws IOException {
+        mainPartRoot.getChildren().setAll(Collections.singleton(bookReturnsLoader));
+    }
+
+
+    @FXML
+    void clickBookView(ActionEvent event) throws IOException {
+
+        mainPartRoot.getChildren().setAll(Collections.singleton(bookViewLoader));
+    }
+
+    @FXML
+    void clickMemberView(ActionEvent event) throws IOException {
+        mainPartRoot.getChildren().setAll(Collections.singleton(memberViewLoader));
+    }
+
+    @FXML
+    void clickAddDeleteBook(ActionEvent event) {
+        mainPartRoot.getChildren().setAll(Collections.singleton(addDeleteBookLoader));
+    }
+
+    @FXML
+    void clickAddDeleteMember(ActionEvent event) {
+        mainPartRoot.getChildren().setAll(Collections.singleton(addDeleteMemberLoader));
     }
 }

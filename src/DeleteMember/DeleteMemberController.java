@@ -24,9 +24,6 @@ public class DeleteMemberController {
     private JFXButton deleteButton;
 
     @FXML
-    private JFXButton cancelButton;
-
-    @FXML
     void clickDeleteButton(ActionEvent event) {
         String memberId = id.getText();
 
@@ -39,11 +36,5 @@ public class DeleteMemberController {
         } else {
             AssistantUtil.displayDialog(rootPane, rootAnchorPane, null, "Failed. Member ID does not exist.");
         }
-    }
-
-    @FXML
-    private void clickCancelButton(ActionEvent event) {
-        Stage stage = (Stage) cancelButton.getScene().getWindow();
-        stage.close();
     }
 }

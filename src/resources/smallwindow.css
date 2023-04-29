@@ -1,5 +1,5 @@
 *{
-    -fx-primary: #3cb371;
+    -fx-primary: linear-gradient(to bottom right, #2d658c, #2ca772);
     -fx-second: #008CBA;
 }
 
@@ -17,6 +17,7 @@
     -fx-border-color: -fx-primary; /* Set the border color to black */
     -fx-border-width: 3px; /* Set the border width to 3px */
 }
+
 
 .dialog-button{
     /*-fx-background-color: blue;*/

@@ -50,10 +50,4 @@ public class DeleteBookController implements Initializable {
             AssistantUtil.displayDialog(rootPane, rootAnchorPane, null, "Failed. Book ID does not exist.");
         }
     }
-
-    @FXML
-    private void clickCancelButton(ActionEvent event) {
-        Stage stage = (Stage) cancelButton.getScene().getWindow();
-        stage.close();
-    }
 }

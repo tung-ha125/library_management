@@ -6,9 +6,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<StackPane fx:id="rootPane" prefWidth="1300.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="DisplayMember.DisplayMemberController">
+<StackPane fx:id="rootPane" prefWidth="1300.0" stylesheets="@../resources/design.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="DisplayMember.DisplayMemberController">
    <children>
-      <AnchorPane fx:id="rootAnchorPane" prefHeight="800.0" prefWidth="1000.0" stylesheets="@../resources/theme.css">
+      <AnchorPane fx:id="rootAnchorPane" prefHeight="800.0" prefWidth="1000.0">
           <children>
               <TableView fx:id="tableView" layoutX="31.0" layoutY="63.0" prefHeight="369.0" prefWidth="579.0" AnchorPane.bottomAnchor="48.0" AnchorPane.leftAnchor="31.0" AnchorPane.rightAnchor="31.0" AnchorPane.topAnchor="63.0">
                   <columns>
@@ -18,9 +18,9 @@
                       <TableColumn fx:id="emailCol" prefWidth="398.0" text="Email" />
                   </columns>
               </TableView>
-              <TextField fx:id="searchField" layoutX="31.0" layoutY="11.0" prefHeight="40.0" prefWidth="300.0" promptText="Search by name, ID, mobile, or email" styleClass="jfx-text-field" stylesheets="@../resources/theme.css" />
-              <JFXButton fx:id="searchButton" layoutX="344.0" layoutY="11.0" onAction="#handleSearch" prefHeight="40.0" prefWidth="80.0" stylesheets="@../resources/theme.css" text="Search" />
-              <JFXButton fx:id="editButton" layoutX="439.0" layoutY="11.0" onAction="#handleEdit" prefHeight="40.0" prefWidth="80.0" text="Edit" />
+              <TextField fx:id="searchField" layoutX="31.0" layoutY="11.0" prefHeight="40.0" prefWidth="300.0" promptText="Search by name, ID, mobile, or email" />
+              <JFXButton fx:id="searchButton" layoutX="344.0" layoutY="11.0" onAction="#handleSearch" prefHeight="40.0" prefWidth="80.0" styleClass="return-button" text="Search" />
+              <JFXButton fx:id="editButton" layoutX="439.0" layoutY="11.0" onAction="#handleEdit" prefHeight="40.0" prefWidth="80.0" styleClass="return-button" text="Edit" />
           </children>
       </AnchorPane>
    </children>

@@ -6,27 +6,22 @@
 <?import javafx.scene.layout.*?>
 <?import com.jfoenix.controls.*?>
 
-<StackPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="175.0" prefWidth="550.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="DeleteBook.DeleteBookController">
+<StackPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="430.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="DeleteBook.DeleteBookController">
    <children>
-      <AnchorPane fx:id="rootAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="175.0" prefWidth="550.0" stylesheets="@../resources/smallwindow.css">
+      <AnchorPane fx:id="rootAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="430.0" stylesheets="@../resources/smallwindow.css">
           <children>
-              <VBox prefHeight="175.0" prefWidth="550.0" spacing="20.0">
+              <VBox prefHeight="200.0" prefWidth="430.0" spacing="20.0">
                   <children>
-                      <TextField fx:id="id" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="450.0" promptText="Enter Book ID to Delete">
+                      <TextField fx:id="id" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="348.0" promptText="Enter Book ID to Delete">
                      <VBox.margin>
                         <Insets bottom="5.0" left="45.0" right="10.0" top="30.0" />
                      </VBox.margin>
                   </TextField>
-                      <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="76.0" prefWidth="550.0">
+                      <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="67.0" prefWidth="430.0">
                           <children>
-                              <JFXButton fx:id="saveButton" layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#clickDeleteButton" prefHeight="50.0" prefWidth="200.0" text="Delete">
+                              <JFXButton fx:id="saveButton" layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#clickDeleteButton" prefHeight="50.0" prefWidth="150.0" text="Delete">
                            <HBox.margin>
-                              <Insets bottom="10.0" left="60.0" right="10.0" top="10.0" />
-                           </HBox.margin>
-                        </JFXButton>
-                              <JFXButton fx:id="cancelButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#clickCancelButton" prefHeight="50.0" prefWidth="200.0" text="Cancel">
-                           <HBox.margin>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                              <Insets bottom="10.0" left="240.0" right="10.0" top="10.0" />
                            </HBox.margin>
                         </JFXButton>
                           </children>

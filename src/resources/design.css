@@ -1,0 +1,106 @@
+*{
+    -fx-primary: linear-gradient(to bottom right, #2d658c, #2ca772);
+}
+
+.top-form {
+    -fx-background-color: #fff;
+    -fx-border-color: #000;
+    -fx-border-width: .4px .4px .2px .4px;
+}
+
+.nav-form{
+    -fx-background-color:-fx-primary;
+}
+
+.nav-btn{
+    -fx-background-color:transparent;
+    -fx-cursor:hand;
+    -fx-text-fill:#fff;
+    -fx-font-size:15px;
+    -fx-font-family:"Arial";
+    -fx-alignment:CENTER-LEFT;
+}
+
+.nav-btn:hover {
+    -fx-background-color: linear-gradient(to bottom right, #2d658c, #2ca772);
+}
+
+.nav-btn:focused {
+    -fx-background-color: linear-gradient(to bottom right, #2d658c, #2ca772);
+}
+
+.shadow{
+    -fx-effect:dropshadow(three-pass-box, rgba(0,0,0,0.4), 6,0,0,0);
+}
+
+.shadow-color{
+    -fx-effect:dropshadow(three-pass-box, rgba(0,0,0,0.4), 6,0,0,0);
+    -fx-background-color: linear-gradient(to bottom right, #2d658c, #2ca772);
+}
+
+.white-bg{
+    -fx-background-color:#fff;
+    -fx-background-radius:8px;
+}
+
+.text-field{
+    -fx-background-color:#fff;
+    -fx-background-radius:4px;
+    -fx-border-color:linear-gradient(to bottom right, #2d658c, #2ca772);
+    -fx-border-width:3px;
+    -fx-font-family:"Tahoma";
+    -fx-border-radius:20px;
+}
+
+/*TableView Default*/
+.table-view{
+    -fx-background-color: white;
+    -fx-font-size: 16px;
+    -fx-border-color: -fx-primary;
+    -fx-border-width: 3px;
+}
+.table-view:focused{
+    -fx-background-color: derive(white, 20%);
+}
+.table-row-cell {
+    -fx-cell-size: 40px;
+}
+
+.table-view .column-header-background{
+    -fx-background-color: -fx-primary;
+}
+.table-view .column-header-background .label{
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+}
+.table-view .column-header {
+    -fx-background-color: transparent;
+}
+
+.dialog-button{
+    /*-fx-background-color: blue;*/
+    -fx-border-color: green;
+    -fx-text-fill: white;
+    -fx-border-radius: 1px;
+    -fx-background-radius: 50; /* Set the border radius to a high value */
+    -fx-border-radius: 50;
+}
+
+.dialog-button:hover{
+    /*-fx-background-color: blue;*/
+    -fx-border-color: derive(green, -20%);
+    -fx-text-fill: white;
+    -fx-background-radius: 50; /* Set the border radius to a high value */
+    -fx-border-radius: 50;
+}
+
+.return-button{
+    -fx-background-color: linear-gradient(to bottom right, #2d658c, #2ca772) ;
+    -fx-border: none;
+    -fx-text-fill: white;
+    /*-fx-padding: 15px 32px;*/
+    -fx-text-align: center;
+    -fx-text-decoration: none;
+    /*-fx-display: inline-block;*/
+    -fx-font-size: 15px;
+}
