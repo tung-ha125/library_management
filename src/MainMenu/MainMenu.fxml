@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
 <?import javafx.scene.shape.*?>
 <?import de.jensd.fx.glyphs.fontawesome.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
-<?import com.jfoenix.controls.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 

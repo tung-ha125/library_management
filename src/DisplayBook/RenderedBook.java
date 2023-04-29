@@ -1,6 +1,5 @@
 package DisplayBook;
 
-import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
 
 public class RenderedBook {
