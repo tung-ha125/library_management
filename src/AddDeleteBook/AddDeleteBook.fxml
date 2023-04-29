@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.paint.*?>
+<?import de.jensd.fx.glyphs.fontawesome.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<StackPane prefHeight="860.0" prefWidth="1030.0" styleClass="shadow" stylesheets="@../resources/design.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AddDeleteBook.AddDeleteBookController">
+   <children>
+      <AnchorPane prefHeight="860.0" prefWidth="1030.0" styleClass="shadow">
+         <children>
+            <AnchorPane layoutX="580.0" layoutY="78.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="430.0" styleClass="white-bg">
+               <children>
+                  <StackPane fx:id="deleteBookRoot" layoutY="86.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="430.0" styleClass="white-bg" />
+                  <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="80.0" prefWidth="200.0">
+                     <children>
+                        <FontAwesomeIcon glyphName="BOOK" layoutX="8.0" layoutY="68.0" size="80">
+                           <fill>
+                              <LinearGradient endX="1.0" endY="1.0">
+                                 <stops>
+                                    <Stop color="#2d658c" />
+                                    <Stop color="#2ca772" offset="1.0" />
+                                 </stops>
+                              </LinearGradient>
+                           </fill>
+                        </FontAwesomeIcon>
+                        <FontAwesomeIcon glyphName="TIMES" layoutX="80.0" layoutY="57.0" size="50">
+                           <fill>
+                              <LinearGradient endX="1.0" endY="1.0">
+                                 <stops>
+                                    <Stop color="#2d658c" />
+                                    <Stop color="#2ca772" offset="1.0" />
+                                 </stops>
+                              </LinearGradient>
+                           </fill>
+                        </FontAwesomeIcon>
+                        <Label layoutX="131.0" layoutY="13.0" prefHeight="53.0" prefWidth="70.0" text="DELETE" />
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="37.0" layoutY="78.0" styleClass="white-bg">
+               <children>
+                  <StackPane fx:id="addBookRoot" layoutY="81.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="667.0" prefWidth="515.0" />
+                  <AnchorPane layoutY="0.5714263916015625" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="80.0" prefWidth="200.0" styleClass="white-bg">
+                     <children>
+                        <FontAwesomeIcon glyphName="BOOK" layoutX="5.0" layoutY="68.0" size="80">
+                           <fill>
+                              <LinearGradient endX="1.0" endY="1.0">
+                                 <stops>
+                                    <Stop color="#2d658c" />
+                                    <Stop color="#2ca772" offset="1.0" />
+                                 </stops>
+                              </LinearGradient>
+                           </fill>
+                        </FontAwesomeIcon>
+                        <FontAwesomeIcon glyphName="PLUS" layoutX="80.0" layoutY="60.0" size="50" text="">
+                           <fill>
+                              <LinearGradient endX="1.0" endY="1.0">
+                                 <stops>
+                                    <Stop color="#2d658c" />
+                                    <Stop color="#2ca772" offset="1.0" />
+                                 </stops>
+                              </LinearGradient>
+                           </fill>
+                        </FontAwesomeIcon>
+                        <Label layoutX="130.0" layoutY="13.0" prefHeight="53.0" prefWidth="70.0" text="ADD" />
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>
