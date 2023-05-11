@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 23, 2023 at 05:22 AM
+-- Generation Time: May 11, 2023 at 10:08 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -20,6 +20,33 @@ SET time_zone = "+00:00";
 --
 -- Database: `library_management`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `adminaccount`
+--
+
+CREATE TABLE `adminaccount` (
+  `username` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `adminaccount`
+--
+
+INSERT INTO `adminaccount` (`username`, `password`) VALUES
+('admin1', 'letmein'),
+('admin2', 'letmein'),
+('admin3', 'letmein'),
+('admin4', 'letmein'),
+('admin5', 'letmein'),
+('admin6', 'letmein'),
+('admin7', 'letmein'),
+('admin8', 'letmein'),
+('admin9', 'letmein'),
+('admin10', 'letmein');
 
 -- --------------------------------------------------------
 
@@ -41,19 +68,19 @@ CREATE TABLE `book` (
 --
 
 INSERT INTO `book` (`id`, `title`, `author`, `publisher`, `intcode`, `available`) VALUES
-('B001', 'The Great Gatsby', 'F. Scott Fitzgerald', 'Scribner', '9780743273564', 4),
-('B002', 'To Kill a Mockingbird', 'Harper Lee', 'J. B. Lippincott & Co.', '9780061120084', 2),
+('B001', 'The Great Gats', 'F. Scott Fitzgerald', 'Scribner', '9780743273564', 1),
+('B002', 'To Kill a Mockingbird', 'Harper Lee', 'J. B. Lippincott & Co.', '9780061120084', 0),
 ('B003', 'One Hundred Years of Solitude', 'Gabriel Garcia Marquez', 'Harper & Row', '9780060531041', 16),
-('B004', 'The Catcher in the Rye', 'J.D. Salinger', 'Little, Brown and Company', '9780316769488', 2),
-('B005', 'Animal Farm', 'George Orwell', 'Secker and Warburg', '9780151002177', 59),
+('B004', 'The Catcher in the Rye', 'J.D. Salinger', 'Little, Brown and Company', '9780316769488', 1),
+('B005', 'Animal Farm', 'George Orwell', 'Secker and Warburg', '9780151002177', 41),
 ('B006', 'Brave New World', 'Aldous Huxley', 'Chatto & Windus', '9780060929879', 3),
 ('B007', 'The Diary of a Young Girl', 'Anne Frank', 'Contact Publishing', '9780553296983', 3),
-('B008', 'Pride and Prejudice', 'Jane Austen', 'T. Egerton, Whitehall', '9780486284736', 6),
-('B009', 'Wuthering Heights', 'Emily Bronte', 'Thomas Cautley Newby', '9780141439556', 3),
-('B010', 'The Hobbit', 'J.R.R. Tolkien', 'George Allen & Unwin', '9780547928227', 4),
-('B011', 'The Lord of the Rings', 'J.R.R. Tolkien', 'George Allen & Unwin', '9780395489321', 2),
-('B012', 'The Hitchhiker\'s Guide to the Galaxy', 'Douglas Adams', 'Pan Books', '9780345391803', 3),
-('B013', '1984', 'George Orwell', 'Secker and Warburg', '9780547249643', 1),
+('B008', 'Pride and Prejudice', 'Jane Austen', 'T. Egerton, Whitehall', '9780486284736', 7),
+('B009', 'Wuthering Heights', 'Emily Bronte', 'Thomas Cautley Newby', '9780141439556', 4),
+('B010', 'The Hobbit', 'J.R.R. Tolkien', 'George Allen & Unwin', '9780547928227', 6),
+('B011', 'The Lord of the Rings', 'J.R.R. Tolkien', 'George Allen & Unwin', '9780395489321', 4),
+('B012', 'The Hitchhiker\'s Guide to the Galaxy', 'Douglas Adams', 'Pan Books', '9780345391803', 9),
+('B013', '1984', 'George Orwell', 'Secker and Warburg', '9780547249643', 11),
 ('B014', 'The War of the Worlds', 'H.G. Wells', 'William Heinemann', '9780307747857', 5),
 ('B015', 'The Time Machine', 'H.G. Wells', 'William Heinemann', '9780349009358', 2),
 ('B016', 'Frankenstein', 'Mary Shelley', 'Lackington, Hughes, Harding, Mavor & Jones', '9780141439471', 3),
@@ -90,18 +117,6 @@ INSERT INTO `book` (`id`, `title`, `author`, `publisher`, `intcode`, `available`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `history`
---
-
-CREATE TABLE `history` (
-  `target` varchar(100) DEFAULT NULL,
-  `description` varchar(255) DEFAULT NULL,
-  `time` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `member`
 --
 
@@ -117,7 +132,7 @@ CREATE TABLE `member` (
 --
 
 INSERT INTO `member` (`Name`, `MemberId`, `Mobile`, `Email`) VALUES
-('Mary Johnso', 2, '534534535', 'john177@gmail.com'),
+('Mary Johns', 2, '534534535', 'john177@gmail.com'),
 ('David', 3, '3456789013', 'david.lee1@example.com'),
 ('Emily Chen', 4, '4567890123', 'emily.chen@example.com'),
 ('James Davis', 5, '5678901234', 'jame.davis@example.com'),
@@ -147,37 +162,56 @@ INSERT INTO `member` (`Name`, `MemberId`, `Mobile`, `Email`) VALUES
 CREATE TABLE `rentedbooks` (
   `MemberId` int(11) DEFAULT NULL,
   `BookId` varchar(200) DEFAULT NULL,
-  `RentedTime` timestamp NOT NULL DEFAULT current_timestamp()
+  `RentedTime` date DEFAULT curdate(),
+  `ReturnedTime` date DEFAULT (`RentedTime` + interval 120 day)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `rentedbooks`
 --
 
-INSERT INTO `rentedbooks` (`MemberId`, `BookId`, `RentedTime`) VALUES
-(2, 'B011', '2022-04-01 07:20:00'),
-(2, 'B018', '2022-04-06 01:45:00'),
-(3, 'B010', '2022-03-27 02:15:00'),
-(4, 'B002', '2022-03-22 06:45:00'),
-(4, 'B007', '2022-04-03 04:10:00'),
-(4, 'B013', '2022-04-08 08:20:00'),
-(5, 'B021', '2022-04-07 06:15:00'),
-(7, 'B020', '2022-04-09 04:45:00'),
-(20, 'B020', '2023-04-17 03:27:06'),
-(3, 'B001', '2023-04-19 17:09:38'),
-(20, 'B005', '2023-04-19 17:19:25'),
-(20, 'B001', '2023-04-20 08:07:16'),
-(19, 'B001', '2023-04-20 08:09:21'),
-(2, 'B002', '2023-04-20 08:10:03'),
-(3, 'B009', '2023-04-20 08:19:12'),
-(3, 'B008', '2023-04-20 08:19:43'),
-(5, 'B020', '2023-04-20 08:21:05'),
-(5, 'B021', '2023-04-20 08:21:09'),
-(3, 'B003', '2023-04-21 14:01:54'),
-(4, 'B004', '2023-04-21 14:03:00'),
-(3, 'B002', '2023-04-22 05:17:51'),
-(7, 'B003', '2023-04-22 09:16:47'),
-(7, 'B005', '2023-04-22 09:18:17');
+INSERT INTO `rentedbooks` (`MemberId`, `BookId`, `RentedTime`, `ReturnedTime`) VALUES
+(2, 'B011', '2022-04-01', '2023-09-09'),
+(2, 'B018', '2022-04-06', '2023-09-09'),
+(3, 'B010', '2022-03-27', '2023-09-09'),
+(4, 'B002', '2022-03-22', '2023-09-09'),
+(4, 'B007', '2022-04-03', '2023-09-09'),
+(4, 'B013', '2022-04-08', '2023-09-09'),
+(5, 'B021', '2022-04-07', '2023-09-09'),
+(7, 'B020', '2022-04-09', '2023-09-09'),
+(20, 'B020', '2023-04-17', '2023-09-09'),
+(3, 'B001', '2023-04-20', '2023-09-09'),
+(20, 'B005', '2023-04-20', '2023-09-09'),
+(20, 'B001', '2023-04-20', '2023-09-09'),
+(19, 'B001', '2023-04-20', '2023-09-09'),
+(2, 'B002', '2023-04-20', '2023-09-09'),
+(5, 'B020', '2023-04-20', '2023-09-09'),
+(5, 'B021', '2023-04-20', '2023-09-09'),
+(7, 'B003', '2023-04-22', '2023-09-09'),
+(7, 'B005', '2023-04-22', '2023-09-09'),
+(5, 'B020', '2023-05-12', '2023-05-12'),
+(3, 'B003', '2023-05-12', '2023-09-09'),
+(3, 'B004', '2023-05-12', '2023-09-09'),
+(5, 'B004', '2023-05-12', '2023-09-09'),
+(2, 'B005', '2023-05-12', '2023-09-09'),
+(10, 'B005', '2023-05-12', '2023-09-09'),
+(5, 'B001', '2023-05-12', '2023-09-09'),
+(10, 'B005', '2023-05-12', '2023-09-09'),
+(10, 'B005', '2023-05-12', '2023-09-09'),
+(10, 'B005', '2023-05-12', '2023-09-09'),
+(5, 'B005', '2023-05-12', '2023-09-09'),
+(10, 'B005', '2023-05-12', '2023-09-09'),
+(10, 'B005', '2023-05-12', '2023-09-09'),
+(10, 'B005', '2023-05-12', '2023-09-09'),
+(5, 'B005', '2023-05-12', '2023-09-09'),
+(7, 'B005', '2023-05-12', '2023-09-09'),
+(7, 'B005', '2023-05-12', '2023-09-09'),
+(10, 'B005', '2023-05-12', '2023-09-09'),
+(10, 'B005', '2023-05-12', '2023-09-09'),
+(10, 'B005', '2023-05-12', '2023-09-09'),
+(10, 'B005', '2023-05-12', '2023-09-09'),
+(8, 'B005', '2023-05-12', '2023-09-09'),
+(8, 'B005', '2023-05-12', '2023-09-09');
 
 --
 -- Indexes for dumped tables
@@ -210,7 +244,7 @@ ALTER TABLE `rentedbooks`
 -- AUTO_INCREMENT for table `member`
 --
 ALTER TABLE `member`
-  MODIFY `MemberId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `MemberId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- Constraints for dumped tables
