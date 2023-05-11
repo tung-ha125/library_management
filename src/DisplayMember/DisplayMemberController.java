@@ -63,6 +63,9 @@ public class DisplayMemberController implements Initializable {
         ArrayList<RenderedMember> members = DatabaseHandler.searchAllMembers();
         if (members != null) {
             this.memberList = members;
+            if (tableView.getItems() != null) {
+                tableView.getItems().clear();
+            }
             tableView.getItems().setAll(this.memberList);
         } else {
             System.out.println("No members found");

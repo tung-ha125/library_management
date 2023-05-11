@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.scene.shape.*?>
 <?import de.jensd.fx.glyphs.fontawesome.*?>
 <?import javafx.scene.text.*?>
@@ -64,6 +65,11 @@
                         <Button fx:id="memberViewButton" layoutX="9.0" layoutY="421.0" onAction="#clickMemberView" prefHeight="31.0" prefWidth="196.0" styleClass="nav-btn" text="Member View">
                            <graphic>
                               <FontAwesomeIcon fill="WHITE" glyphName="USER_SECRET" size="20" />
+                           </graphic>
+                        </Button>
+                        <Button fx:id="logoutButton" layoutX="97.0" layoutY="839.0" mnemonicParsing="false" onAction="#logout" prefHeight="46.0" prefWidth="106.0" styleClass="nav-btn" text="Logout">
+                           <graphic>
+                              <FontAwesomeIcon fill="WHITE" glyphName="SIGN_OUT" size="30" />
                            </graphic>
                         </Button>
                      </children>

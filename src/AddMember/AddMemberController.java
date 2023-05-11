@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import Database.DatabaseHandler;
+import DisplayMember.DisplayMemberController;
 import Util.AssistantUtil;
 import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
@@ -18,23 +19,19 @@ public class AddMemberController implements Initializable {
 
     @FXML
     private AnchorPane rootAnchorPane;
-
     @FXML
     private StackPane rootPane;
     @FXML
     private TextField name;
-
     @FXML
     private TextField email;
-
     @FXML
     private TextField phone;
-
     @FXML
     private JFXButton saveButton;
-
     @FXML
     private JFXButton cancelButton;
+    private DisplayMemberController display_member_controller;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -42,7 +39,7 @@ public class AddMemberController implements Initializable {
     }
 
     @FXML
-    void clickSaveButton(ActionEvent event) {
+    private void clickSaveButton(ActionEvent event) {
         String memberName = name.getText();
         String memberEmail = email.getText();
         String memberPhone = phone.getText();
@@ -65,6 +62,7 @@ public class AddMemberController implements Initializable {
 
         //Save
         if (DatabaseHandler.pushNewMember(memberName, memberPhone, memberEmail)) {
+            display_member_controller.loadData();
             AssistantUtil.displayDialog(rootPane, rootAnchorPane, null, "Add success.");
         } else {
             AssistantUtil.displayDialog(rootPane, rootAnchorPane, null, "Add failed.");
@@ -77,4 +75,7 @@ public class AddMemberController implements Initializable {
         stage.close();
     }
 
+    public void setUpDisplayMemberController(DisplayMemberController display_member_controller_) {
+        display_member_controller = display_member_controller_;
+    }
 }

@@ -1,5 +1,6 @@
 package AddBook1;
 
+import DisplayBook.DisplayBookController;
 import Util.AssistantUtil;
 import com.jfoenix.controls.JFXButton;
 import javafx.fxml.FXML;
@@ -17,34 +18,25 @@ import java.util.ResourceBundle;
 public class DisplayAddBookController implements Initializable {
     @FXML
     private StackPane rootPane;
-
     @FXML
     private AnchorPane rootAnchorPane;
-
     @FXML
     private TextField author;
-
     @FXML
     private TextField publisher;
-
     @FXML
     private TextField id;
-
     @FXML
     private TextField title;
-
     @FXML
     private TextField intcode;
-
     @FXML
     private TextField available;
-
     @FXML
     private JFXButton saveButton;
-
     @FXML
     private JFXButton cancelButton;
-
+    private DisplayBookController display_book_controller;
 
 
     @Override
@@ -77,6 +69,7 @@ public class DisplayAddBookController implements Initializable {
 
             if (DatabaseHandler.addBook(bookId, bookName, bookAuthor, bookPublisher, bookIntcode, boolAvailable)) {
                 AssistantUtil.displayDialog(rootPane, rootAnchorPane, null, "Success.");
+                display_book_controller.loadData();
             } else {
                 AssistantUtil.displayDialog(rootPane, rootAnchorPane, null, "Failed.");
             }
@@ -89,6 +82,10 @@ public class DisplayAddBookController implements Initializable {
     private void clickCancelButton(ActionEvent event) {
         Stage stage = (Stage) cancelButton.getScene().getWindow();
         stage.close();
+    }
+
+    public void setUpDisplayBookController(DisplayBookController display_book_controller_) {
+        display_book_controller = display_book_controller_;
     }
 
 }

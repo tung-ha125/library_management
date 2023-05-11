@@ -70,6 +70,9 @@ public class DisplayBookController implements Initializable {
         ArrayList<RenderedBook> books = DatabaseHandler.searchAllBooks();
         if (books != null) {
             this.bookList = books;
+            if (tableView.getItems() != null) {
+                tableView.getItems().clear();
+            }
             tableView.getItems().setAll(this.bookList);
         } else {
             System.out.println("No books found");

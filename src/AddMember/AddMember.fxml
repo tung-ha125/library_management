@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.geometry.*?>
 <?import com.jfoenix.controls.*?>
@@ -30,12 +31,7 @@
                           <children>
                               <JFXButton fx:id="saveButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#clickSaveButton" prefHeight="50.0" prefWidth="200.0" text="Save">
                            <HBox.margin>
-                              <Insets bottom="10.0" left="50.0" right="10.0" top="10.0" />
-                           </HBox.margin>
-                        </JFXButton>
-                              <JFXButton fx:id="cancelButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#clickCancelButton" prefHeight="50.0" prefWidth="200.0" text="Cancel">
-                           <HBox.margin>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                              <Insets bottom="10.0" left="30.0" right="10.0" top="10.0" />
                            </HBox.margin>
                         </JFXButton>
                           </children>

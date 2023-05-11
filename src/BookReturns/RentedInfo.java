@@ -1,16 +1,26 @@
 package BookReturns;
 
-import java.sql.Timestamp;
+import java.sql.Date;
 
 public class RentedInfo {
     private String bookID;
-    private Timestamp RentedDate;
+    private Date RentedDate;
     private String memberID;
+    private Date ReturnedDate;
 
-    public RentedInfo(String bookID, String memberID, Timestamp rentedDate) {
+    public RentedInfo(String bookID, String memberID, Date rentedDate, Date returnedDate) {
         this.bookID = bookID;
         this.RentedDate = rentedDate;
         this.memberID = memberID;
+        this.ReturnedDate = returnedDate;
+    }
+
+    public Date getReturnedDate() {
+        return ReturnedDate;
+    }
+
+    public void setReturnedDate(Date returnedDate) {
+        ReturnedDate = returnedDate;
     }
 
     public String getBookID() {
@@ -29,11 +39,11 @@ public class RentedInfo {
         this.bookID = bookID;
     }
 
-    public Timestamp getRentedDate() {
+    public Date getRentedDate() {
         return RentedDate;
     }
 
-    public void setRentedDate(Timestamp rentedDate) {
+    public void setRentedDate(Date rentedDate) {
         RentedDate = rentedDate;
     }
 }

@@ -49,14 +49,9 @@
                         </TextField>
                         <HBox prefHeight="72.0" prefWidth="530.0">
                             <children>
-                                <JFXButton fx:id="saveButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#clickSaveButton" prefHeight="50.0" prefWidth="200.0" style=": ;" text="Save">
+                                <JFXButton fx:id="saveButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#clickSaveButton" prefHeight="50.0" prefWidth="235.0" style=": ;" text="Save">
                                     <HBox.margin>
-                                        <Insets bottom="10.0" left="50.0" right="10.0" top="10.0" />
-                                    </HBox.margin>
-                                </JFXButton>
-                                <JFXButton fx:id="cancelButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#clickCancelButton" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #008CBA; -fx-background-radius: 50;" text="Cancel">
-                                    <HBox.margin>
-                                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                        <Insets bottom="10.0" left="30.0" right="10.0" top="10.0" />
                                     </HBox.margin>
                                 </JFXButton>
                             </children>

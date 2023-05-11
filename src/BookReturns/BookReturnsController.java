@@ -26,7 +26,7 @@ public class BookReturnsController implements Initializable {
     @FXML
     private Text totalBookField;
     @FXML
-    private TableColumn<RentedInfo, Timestamp> memberRentedDateColumn;
+    private TableColumn<RentedInfo, Date> memberRentedDateColumn;
     @FXML
     private Text totalMemberField;
     @FXML
@@ -36,7 +36,11 @@ public class BookReturnsController implements Initializable {
     @FXML
     private JFXButton clearBookButton;
     @FXML
-    private TableColumn<RentedInfo, Timestamp> bookRentedDateColumn;
+    private TableColumn<RentedInfo, Date> bookRentedDateColumn;
+    @FXML
+    private TableColumn<RentedInfo, Date> bookReturnedDateColumn;
+    @FXML
+    private TableColumn<RentedInfo, Date> memberReturnedDateColumn;
     @FXML
     private TableView<RentedInfo> memberTable;
     @FXML
@@ -99,7 +103,7 @@ public class BookReturnsController implements Initializable {
             }
             stmt.clearParameters();
             stmt.close();
-            stmt = conn.prepareStatement("SELECT BookId, RentedTime FROM rentedbooks WHERE MemberId = ?");
+            stmt = conn.prepareStatement("SELECT BookId, RentedTime, ReturnedTime FROM rentedbooks WHERE MemberId = ?");
             stmt.setString(1, memberId);
             rs = stmt.executeQuery();
 
@@ -107,8 +111,9 @@ public class BookReturnsController implements Initializable {
             ObservableList<RentedInfo> books = FXCollections.observableArrayList();
             while (rs.next()) {
                 String bookId = rs.getString("BookId");
-                Timestamp rentedTime = rs.getTimestamp("RentedTime");
-                books.add(new RentedInfo(bookId, memberId, rentedTime));
+                Date rentedTime = rs.getDate("RentedTime");
+                Date returnedTime = rs.getDate("ReturnedTime");
+                books.add(new RentedInfo(bookId, memberId, rentedTime, returnedTime));
                 bookCount++;
             }
             memberTable.setItems(books);
@@ -141,15 +146,17 @@ public class BookReturnsController implements Initializable {
         // Query the rentedbooks table in the database for information about this book
         try {
             Connection conn = DatabaseHandler.connectToDatabase();
-            PreparedStatement stmt = conn.prepareStatement("SELECT MemberId, RentedTime FROM rentedbooks WHERE BookId = ?");
+            PreparedStatement stmt = conn.prepareStatement("SELECT MemberId, RentedTime , ReturnedTime FROM rentedbooks WHERE BookId = ?");
             stmt.setString(1, bookId);
             ResultSet rs = stmt.executeQuery();
             // Populate the bookTable with the results of the query (bookTable contains information about members have that book)
             ObservableList<RentedInfo> members = FXCollections.observableArrayList();
             while (rs.next()) {
                 String memberId = rs.getString("MemberId");
-                Timestamp rentedTime = rs.getTimestamp("RentedTime");
-                members.add(new RentedInfo("", memberId, rentedTime));
+                Date rentedTime = rs.getDate("RentedTime");
+                Date returnedTime = rs.getDate("ReturnedTime");
+                members.add(new RentedInfo("", memberId, rentedTime, returnedTime));
+
                 memberCount++;
             }
             if (memberCount == 0) {
@@ -160,7 +167,6 @@ public class BookReturnsController implements Initializable {
 
             // Update the totalMemberField
             totalMemberField.setText("Total members: " + memberCount);
-
             conn.close();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -199,7 +205,7 @@ public class BookReturnsController implements Initializable {
         Connection conn = DatabaseHandler.connectToDatabase();
         PreparedStatement stmt = conn.prepareStatement("DELETE FROM rentedbooks WHERE BookId = ? AND RentedTime = ? LIMIT 1 ");
         stmt.setString(1, selectedBook.getBookID());
-        stmt.setTimestamp(2, selectedBook.getRentedDate());
+        stmt.setDate(2, selectedBook.getRentedDate());
 
         int rowsAffected = stmt.executeUpdate();
         if (rowsAffected > 0) {
@@ -228,7 +234,6 @@ public class BookReturnsController implements Initializable {
         } else {
             setWarningText(warningText, "Delete failed");
         }
-
         conn.close();
     }
 
@@ -308,7 +313,7 @@ public class BookReturnsController implements Initializable {
                 conn.close();
 
             } catch (SQLException e) {
-                e.printStackTrace();
+                System.out.println("Database error: " + e.getMessage());
             } catch (NumberFormatException e) {
                 setWarningText(warningText, "Member id is invalid.");
             }
@@ -326,10 +331,12 @@ public class BookReturnsController implements Initializable {
         bookIDcolumn.setCellValueFactory(new PropertyValueFactory<>("bookID"));
         memberRentedDateColumn.setCellValueFactory(new PropertyValueFactory<>("RentedDate"));
         memberIDColumn.setCellValueFactory(new PropertyValueFactory<>("memberID"));
+        memberReturnedDateColumn.setCellValueFactory(new PropertyValueFactory<>("ReturnedDate"));
         bookRentedDateColumn.setCellValueFactory(new PropertyValueFactory<>("RentedDate"));
+        bookReturnedDateColumn.setCellValueFactory(new PropertyValueFactory<>("ReturnedDate"));
     }
 
-    public void setUpBookViewController(DisplayBookController controller) {
-        this.book_view_controller = controller;
+    public void setUpBookViewController(DisplayBookController book_view_controller_) {
+        this.book_view_controller = book_view_controller_;
     }
 }
