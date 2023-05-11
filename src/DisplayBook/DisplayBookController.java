@@ -20,6 +20,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class DisplayBookController implements Initializable {
@@ -28,7 +29,7 @@ public class DisplayBookController implements Initializable {
     private AnchorPane rootAnchorPane;
     @FXML
     private StackPane rootPane;
-    private ArrayList<RenderedBook> bookList = new ArrayList<>();
+    private static ArrayList<RenderedBook> bookList = new ArrayList<>();
     @FXML
     private TableColumn<RenderedBook, String> idCol;
     @FXML
@@ -74,7 +75,6 @@ public class DisplayBookController implements Initializable {
             System.out.println("No books found");
         }
     }
-
 
     @FXML
     public void handleSearch(ActionEvent keyEvent) {

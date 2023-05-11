@@ -1,6 +1,7 @@
 package BookReturns;
 
 import Database.DatabaseHandler;
+import DisplayBook.DisplayBookController;
 import com.jfoenix.controls.JFXButton;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -21,8 +22,7 @@ import java.util.ResourceBundle;
 
 public class BookReturnsController implements Initializable {
 
-    @FXML
-    private TableColumn<RentedInfo, String> bookIDcolumn;
+    @FXML private TableColumn<RentedInfo, String> bookIDcolumn;
     @FXML
     private Text totalBookField;
     @FXML
@@ -55,9 +55,10 @@ public class BookReturnsController implements Initializable {
     private TextField insertBookField;
     private int bookCount = 0;
     private int memberCount = 0;
+    private DisplayBookController book_view_controller;
 
     @FXML
-    void pressMemberIdKey(KeyEvent event) {
+    public void pressMemberIdKey(KeyEvent event) {
         resetWarningText(warningText);
         if (event.getCode() == KeyCode.ENTER) {
             // Get the member ID entered by the user
@@ -84,7 +85,7 @@ public class BookReturnsController implements Initializable {
         }
     }
 
-    void queryUserRentedBooks(String memberId) {
+    public void queryUserRentedBooks(String memberId) {
         // Query the rentedbooks table in the database for information about this member
         bookCount = 0;
         try {
@@ -122,7 +123,7 @@ public class BookReturnsController implements Initializable {
     }
 
     @FXML
-    void pressBookID(KeyEvent event) {
+    public void pressBookID(KeyEvent event) {
         resetWarningText(warningText1);
         if (event.getCode() == KeyCode.ENTER) {
             // Get the book ID entered by the user
@@ -135,7 +136,7 @@ public class BookReturnsController implements Initializable {
         }
     }
 
-    private void updateBookTable(String bookId) {
+    public void updateBookTable(String bookId) {
         memberCount = 0;
         // Query the rentedbooks table in the database for information about this book
         try {
@@ -167,7 +168,7 @@ public class BookReturnsController implements Initializable {
     }
 
     @FXML
-    void clickClearMemberButton(ActionEvent event) {
+    public void clickClearMemberButton(ActionEvent event) {
         totalBookField.setText("0");
         memberTable.getItems().clear();
         memberTable.refresh();
@@ -175,7 +176,7 @@ public class BookReturnsController implements Initializable {
     }
 
     @FXML
-    void clickClearBookButton(ActionEvent event) {
+    public void clickClearBookButton(ActionEvent event) {
         totalMemberField.setText("0");
         bookTable.getItems().clear();
         memberTable.refresh();
@@ -183,7 +184,7 @@ public class BookReturnsController implements Initializable {
     }
 
     @FXML
-    void clickDeleteMemberButton(ActionEvent event) throws IOException, SQLException {
+    public void clickDeleteMemberButton(ActionEvent event) throws IOException, SQLException {
         RentedInfo selectedBook = memberTable.getSelectionModel().getSelectedItem();
         if (selectedBook == null) {
             // No member selected, show an alert and return
@@ -221,6 +222,9 @@ public class BookReturnsController implements Initializable {
 
             //update table
             queryUserRentedBooks(selectedBook.getMemberID());
+
+            //update book view
+            book_view_controller.loadData();
         } else {
             setWarningText(warningText, "Delete failed");
         }
@@ -229,7 +233,7 @@ public class BookReturnsController implements Initializable {
     }
 
     @FXML
-    void pressInsertBook(KeyEvent event) {
+    public void pressInsertBook(KeyEvent event) {
         resetWarningText(warningText);
         if (event.getCode() == KeyCode.ENTER) {
             if (memberIdField.getText() == "") {
@@ -323,5 +327,9 @@ public class BookReturnsController implements Initializable {
         memberRentedDateColumn.setCellValueFactory(new PropertyValueFactory<>("RentedDate"));
         memberIDColumn.setCellValueFactory(new PropertyValueFactory<>("memberID"));
         bookRentedDateColumn.setCellValueFactory(new PropertyValueFactory<>("RentedDate"));
+    }
+
+    public void setUpBookViewController(DisplayBookController controller) {
+        this.book_view_controller = controller;
     }
 }

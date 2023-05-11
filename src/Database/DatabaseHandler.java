@@ -82,8 +82,8 @@ public class DatabaseHandler {
         }
     }
 
-    public static ArrayList<RenderedBook> searchAllBooks() {
-        ArrayList<RenderedBook> bookList = new ArrayList<>();
+    public static ArrayList searchAllBooks() {
+        ArrayList bookList = new ArrayList<>();
 
         String query = "SELECT * FROM book";
 
